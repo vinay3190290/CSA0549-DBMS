@@ -1,0 +1,97 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+4 rows in set (0.00 sec)
+
+mysql>  use mysql;
+Database changed
+mysql> show tables;
++---------------------------+
+| Tables_in_mysql           |
++---------------------------+
+| bank                      |
+| columns_priv              |
+| db                        |
+| event                     |
+| func                      |
+| general_log               |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| host                      |
+| ndb_binlog_index          |
+| plugin                    |
+| proc                      |
+| procs_priv                |
+| proxies_priv              |
+| servers                   |
+| slow_log                  |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| user                      |
++---------------------------+
+25 rows in set (0.02 sec)
+
+mysql> use bank;
+ERROR 1049 (42000): Unknown database 'bank'
+mysql> SHOW desc bank;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc bank' at line 1
+mysql> select desc bank;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'desc bank' at line 1
+mysql> desc bank;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| s_no           | int(10)     | YES  |     | NULL    |       |
+| cus_name       | varchar(20) | YES  |     | NULL    |       |
+| acc_no         | int(10)     | YES  |     | NULL    |       |
+| balance        | int(10)     | YES  |     | NULL    |       |
+| customerbranch | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> create table bank(s_no int(10),cus_name varchar(20),acc_no int(10),balance int(10),cus_branch varchar(20));
+ERROR 1050 (42S01): Table 'bank' already exists
+mysql> create table banks(s_no int(10),cus_name varchar(20),acc_no int(10),balance int(10),cus_branch varchar(20));
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> insert table banks(s_no,cus_name,acc_no,balance,cus_branch)values('1','sanju','123456','25000','chennai');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table banks(s_no,cus_name,acc_no,balance,cus_branch)values('1','sanju','123456',' at line 1
+mysql> insert into banks(s_no,cus_name,acc_no,balance,cus_branch)values('1','sanju','123456','25000','chennai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select*from banks
+    -> select* from banks;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'select* from banks' at line 2
+mysql> select*from banks;
++------+----------+--------+---------+------------+
+| s_no | cus_name | acc_no | balance | cus_branch |
++------+----------+--------+---------+------------+
+|    1 | sanju    | 123456 |   25000 | chennai    |
++------+----------+--------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> select*from banks '123456'
+    -> select*with banks '123456'
+    -> select*from banks acc_no('123456');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''123456'
+select*with banks '123456'
+select*from banks acc_no('123456')' at line 1
+mysql> select*from banks where acc_no='123456';
++------+----------+--------+---------+------------+
+| s_no | cus_name | acc_no | balance | cus_branch |
++------+----------+--------+---------+------------+
+|    1 | sanju    | 123456 |   25000 | chennai    |
++------+----------+--------+---------+------------+
+1 row in set (0.02 sec)
