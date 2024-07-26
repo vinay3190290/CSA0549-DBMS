@@ -1,0 +1,116 @@
+mysql> create table book_publishing_company
+    -> (bookno int(3),bookname char(20),author char(20),cost int(20));
+Query OK, 0 rows affected (0.11 sec)
+
+mysql> desc book_publishing_company;
++----------+----------+------+-----+---------+-------+
+| Field    | Type     | Null | Key | Default | Extra |
++----------+----------+------+-----+---------+-------+
+| bookno   | int(3)   | YES  |     | NULL    |       |
+| bookname | char(20) | YES  |     | NULL    |       |
+| author   | char(20) | YES  |     | NULL    |       |
+| cost     | int(20)  | YES  |     | NULL    |       |
++----------+----------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into book_publishing_company values(299,'physics','ram',199),(49,'chemistry','raghu',299),(143,'biology','suma','599'),(321,'maths','ramanujan',399);
+Query OK, 4 rows affected (0.03 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from book_publishing_company;
++--------+-----------+-----------+------+
+| bookno | bookname  | author    | cost |
++--------+-----------+-----------+------+
+|    299 | physics   | ram       |  199 |
+|     49 | chemistry | raghu     |  299 |
+|    143 | biology   | suma      |  599 |
+|    321 | maths     | ramanujan |  399 |
++--------+-----------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> update book_publishing_company
+    -> set author='newton'
+    -> where bookno=299;
+Query OK, 1 row affected (0.05 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from book_publishing_company;
++--------+-----------+-----------+------+
+| bookno | bookname  | author    | cost |
++--------+-----------+-----------+------+
+|    299 | physics   | newton    |  199 |
+|     49 | chemistry | raghu     |  299 |
+|    143 | biology   | suma      |  599 |
+|    321 | maths     | ramanujan |  399 |
++--------+-----------+-----------+------+
+4 rows in set (0.00 sec)
+
+mysql> insert into book_publishing_company values('35','english','ram',599);
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select *from book_publishing_company;
++--------+-----------+-----------+------+
+| bookno | bookname  | author    | cost |
++--------+-----------+-----------+------+
+|    299 | physics   | newton    |  199 |
+|     49 | chemistry | raghu     |  299 |
+|    143 | biology   | suma      |  599 |
+|    321 | maths     | ramanujan |  399 |
+|     35 | english   | ram       |  599 |
++--------+-----------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> delete from book_publishing_company
+    -> where bookno=49;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from book_publishing_company;
++--------+----------+-----------+------+
+| bookno | bookname | author    | cost |
++--------+----------+-----------+------+
+|    299 | physics  | newton    |  199 |
+|    143 | biology  | suma      |  599 |
+|    321 | maths    | ramanujan |  399 |
+|     35 | english  | ram       |  599 |
++--------+----------+-----------+------+
+4 rows in set (0.00 sec)
+mysql> create table authors(author_name char(20),subject_related char(30),written_book char(30));
+Query OK, 0 rows affected (0.08 sec)
+
+mysql> desc authors;
++-----------------+----------+------+-----+---------+-------+
+| Field           | Type     | Null | Key | Default | Extra |
++-----------------+----------+------+-----+---------+-------+
+| author_name     | char(20) | YES  |     | NULL    |       |
+| subject_related | char(30) | YES  |     | NULL    |       |
+| written_book    | char(30) | YES  |     | NULL    |       |
++-----------------+----------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+mysql> insert into authors values('newton','physics','gravity'),('sum','bioscience','heart_function'),('ramanujan','maths','simple_equations');
+Query OK, 3 rows affected (0.05 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> select *from authors;
++-------------+-----------------+------------------+
+| author_name | subject_related | written_book     |
++-------------+-----------------+------------------+
+| newton      | physics         | gravity          |
+| sum         | bioscience      | heart_function   |
+| ramanujan   | maths           | simple_equations |
++-------------+-----------------+------------------+
+3 rows in set (0.00 sec)
+
+mysql> insert into authors values('ram','english','spoken_english');
+Query OK, 1 row affected (0.03 sec)
+
+mysql> select * from authors;
++-------------+-----------------+------------------+
+| author_name | subject_related | written_book     |
++-------------+-----------------+------------------+
+| newton      | physics         | gravity          |
+| sum         | bioscience      | heart_function   |
+| ramanujan   | maths           | simple_equations |
+| ram         | english         | spoken_english   |
++-------------+-----------------+------------------+
+4 rows in set (0.00 sec)
