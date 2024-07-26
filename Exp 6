@@ -1,0 +1,37 @@
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| test               |
++--------------------+
+4 rows in set (0.01 sec)
+
+mysql> use mysql;
+Database changed
+mysql> create table projects(s_no int(10),name varchar(20),coordinators varchar(20),price int(10),location varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into projects(s_no,name,coordinators,price,location)values('1','sai','vikas','2500','chennai');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select*from projects;
++------+------+--------------+-------+----------+
+| s_no | name | coordinators | price | location |
++------+------+--------------+-------+----------+
+|    1 | sai  | vikas        |  2500 | chennai  |
++------+------+--------------+-------+----------+
+1 row in set (0.00 sec)
+
+mysql> select*from where coordinators = 'vikas';
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'where coordinators = 'vikas'' at line 1
+mysql>
+mysql> select*from projects where coordinators='vikas';
++------+------+--------------+-------+----------+
+| s_no | name | coordinators | price | location |
++------+------+--------------+-------+----------+
+|    1 | sai  | vikas        |  2500 | chennai  |
++------+------+--------------+-------+----------+
+1 row in set (0.00 sec)
